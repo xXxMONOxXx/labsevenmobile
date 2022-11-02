@@ -66,10 +66,10 @@ public class ListFragment extends Fragment {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         ArrayList<String> dataDetails = new ArrayList<String>();
                         prepareDetailsList(dataDetails);
-                        TextView titleText = getActivity().findViewById(R.id.title);
-                        titleText.setText(adapterView.getItemAtPosition(i).toString());
-                        TextView detailsText = getActivity().findViewById(R.id.details);
-                        detailsText.setText(dataDetails.get(i));
+                        Bundle result = new Bundle();
+                        result.putString("titleKey", data.get(i));
+                        result.putString("detailsKey", dataDetails.get(i));
+                        getParentFragmentManager().setFragmentResult("requestKey", result);
                     }
                 }
         );
@@ -92,16 +92,18 @@ public class ListFragment extends Fragment {
     }
 
     private void prepareDataList(List<String> data) {
-        data.add("1");
-        data.add("2");
-        data.add("3");
-        data.add("4");
+        data.add("Windows ");
+        data.add("MacOS ");
+        data.add("Linux ");
+        data.add("Android ");
+        data.add("iOS ");
     }
 
     private void prepareDetailsList(List<String> data){
-        data.add("5");
-        data.add("6");
-        data.add("7");
-        data.add("8");
+        data.add("XP");
+        data.add("12 beta");
+        data.add("Ubuntu");
+        data.add("13 beta");
+        data.add("9");
     }
 }

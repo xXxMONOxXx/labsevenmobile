@@ -3,10 +3,12 @@ package by.mishastoma.labsevenmobile;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentResultListener;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +55,17 @@ public class DetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(String key, Bundle bundle) {
+                TextView titleText = getActivity().findViewById(R.id.title);
+                titleText.setText(bundle.getString("titleKey"));
+                TextView detailsText = getActivity().findViewById(R.id.details);
+                detailsText.setText(bundle.getString("detailsKey"));
+            }
+        });
+
     }
 
     @Override
