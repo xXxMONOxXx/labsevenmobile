@@ -65,7 +65,6 @@ public class DetailFragment extends Fragment {
                 detailsText.setText(bundle.getString("detailsKey"));
             }
         });
-
     }
 
     @Override
